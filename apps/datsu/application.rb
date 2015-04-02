@@ -1,5 +1,24 @@
 require 'lotus/helpers'
 
+module ParameterValidation
+  private
+  def validate!
+    halt_with_errors unless params.valid?
+  end
+
+  def errors_hash
+    { errors: mapped_errors.to_h }
+  end
+
+  def mapped_errors
+    errors.to_h.inject({}) { |hash, (key, value)| hash.merge({ key.to_sym => value.map(&:validation) }) }
+  end
+
+  def halt_with_errors
+    halt 422, JSON.generate(errors_hash)
+  end
+end
+
 module Datsu
   class Application < Lotus::Application
     configure do
@@ -70,7 +89,7 @@ module Datsu
       # Default format for the requests that don't specify an HTTP_ACCEPT header
       # Argument: A symbol representation of a mime type, default to :html
       #
-      # default_format :html
+      default_format :json
 
       # HTTP Body parsers
       # Parse non GET responses body for a specific mime type
@@ -187,6 +206,9 @@ module Datsu
       #
       # See: http://www.rubydoc.info/gems/lotus-controller#Configuration
       controller.prepare do
+        include ParameterValidation
+        before :validate!
+
         # include MyAuthentication # included in all the actions
         # before :authenticate!    # run an authentication before callback
       end
