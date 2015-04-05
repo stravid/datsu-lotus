@@ -7,6 +7,7 @@ gem 'lotusrb', '0.3.0'
 gem 'lotus-model', '~> 0.3'
 gem 'pg'
 gem 'thin'
+gem 'bcrypt'
 
 group :test do
   gem 'minitest'

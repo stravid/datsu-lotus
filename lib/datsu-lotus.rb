@@ -35,5 +35,13 @@ Lotus::Model.configure do
     #   attribute :id,   Integer
     #   attribute :name, String
     # end
+
+    collection :identities do
+      entity Datsu::Model::Identity
+
+      attribute :id,   Integer
+      attribute :email, String
+      attribute :password_digest,  String
+    end
   end
 end.load!
