@@ -1,23 +1,5 @@
 require 'lotus/helpers'
-
-module ParameterValidation
-  private
-  def validate!
-    halt_with_errors unless params.valid?
-  end
-
-  def errors_hash
-    { errors: mapped_errors.to_h }
-  end
-
-  def mapped_errors
-    errors.to_h.inject({}) { |hash, (key, value)| hash.merge({ key.to_sym => value.map(&:validation) }) }
-  end
-
-  def halt_with_errors
-    halt 422, JSON.generate(errors_hash)
-  end
-end
+require_relative 'controllers/parameter_validation'
 
 module Datsu
   class Application < Lotus::Application
