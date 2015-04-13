@@ -14,4 +14,5 @@ group :test do
   gem 'bogus'
   gem 'rack-test'
   gem 'json-schema'
+  gem 'fivemat'
 end
