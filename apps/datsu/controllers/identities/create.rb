@@ -6,8 +6,8 @@ module Datsu::Controllers::Identities
 
     params do
       param :identity do
-        param :email, presence: true
-        param :password, presence: true
+        param :email, type: String, presence: true
+        param :password, type: String, presence: true
       end
     end
 
