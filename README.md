@@ -24,5 +24,3 @@ Ziel: Identity::Create abschließen
 Aufgaben:
 
 assert_parameter_validation_usage action schreiben
-
-Interactor testen
