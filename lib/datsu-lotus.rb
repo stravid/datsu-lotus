@@ -37,7 +37,7 @@ Lotus::Model.configure do
     # end
 
     collection :identities do
-      entity Datsu::Model::Identity
+      entity Identity
 
       attribute :id,   Integer
       attribute :email, String

@@ -11,9 +11,7 @@ gem 'bcrypt'
 
 group :test do
   gem 'minitest'
-  gem 'capybara'
-end
-
-group :production do
-  # gem 'puma'
+  gem 'bogus'
+  gem 'rack-test'
+  gem 'json-schema'
 end

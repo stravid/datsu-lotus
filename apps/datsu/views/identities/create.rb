@@ -7,7 +7,7 @@ module Datsu::Views::Identities
     format :json
 
     def render
-      _raw JSON.generate identity
+      _raw JSON.generate({ identity: { id: identity.id, email: identity.email}})
     end
   end
 end

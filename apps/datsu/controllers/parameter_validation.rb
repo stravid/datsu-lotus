@@ -1,4 +1,4 @@
-require_relative 'error_serializers'
+require_relative '../error_serializers/lotus_validations_errors'
 
 module ParameterValidation
   private
@@ -7,6 +7,6 @@ module ParameterValidation
   end
 
   def halt_with_errors
-    halt 422, ErrorSerializers::LotusValidations.new(errors).to_json
+    halt 422, ErrorSerializers::LotusValidationsErrors.new(errors).to_json
   end
 end

@@ -4,7 +4,7 @@ namespace :db do
     require 'sequel'
 
     Sequel.extension :migration
-    db = Sequel.connect ENV.fetch('DATABASE_URL')
+    db = Sequel.connect ENV.fetch('DATSU_LOTUS_DATABASE_URL')
 
     Sequel::Migrator.run db, 'db/migrations'
   end
@@ -14,7 +14,7 @@ namespace :db do
     require 'sequel'
 
     Sequel.extension :migration
-    db = Sequel.connect ENV.fetch('DATABASE_URL')
+    db = Sequel.connect ENV.fetch('DATSU_LOTUS_DATABASE_URL')
     version = db.tables.include?(:schema_info) ? db[:schema_info].first[:version] : 0
 
     Sequel::Migrator.run db, 'db/migrations', target: version
